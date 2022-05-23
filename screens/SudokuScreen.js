@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const SudokuScreen = ({ navigation }) => {
 
     const [matrixState, setMatrixState] = useState([
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -81,7 +81,7 @@ const SudokuScreen = ({ navigation }) => {
         return false;
     }
 
-    const main = () => {
+    const main = async () => {
         const n = 9;
         let mat = [...matrixState];
         let solvable = solveSudoku(mat, 0, 0, n);
@@ -93,9 +93,9 @@ const SudokuScreen = ({ navigation }) => {
         setGamePlayed(true);
     }
 
-    // useEffect(() => {
-    //     main();
-    // }, [])
+    useEffect(async () => {
+        await main();
+    }, [])
 
 
   return (
